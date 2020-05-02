@@ -61,11 +61,14 @@ app.post("/compose", function (req, res) {
 
 app.get("/posts/:postName", function (req, res) {
   posts.forEach(post => {
-    if (_.lowerCase(post.postTitle) === _.lowerCase(req.params.postName)) {
-      console.log("Match found!");
-    } else {
-      console.log("Not a match...");
 
+    if (_.lowerCase(post.postTitle) === _.lowerCase(req.params.postName)) {
+
+      res.render("post", {
+        postTitle: post.postTitle,
+        postText: post.postText
+
+      });
     }
   });
 });
